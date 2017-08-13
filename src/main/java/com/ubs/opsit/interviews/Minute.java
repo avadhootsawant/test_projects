@@ -11,9 +11,8 @@ public class Minute {
 
     public Minute(int minutes) {
         this.minute = minutes;
-
-
     }
+
 
     public String representTopRow() {
         StringBuilder output = new StringBuilder();
@@ -21,13 +20,16 @@ public class Minute {
         boolean bottomLampsInRedExists= minute % 5 >0;
 
         IntStream.range(0, topLampsInRed).forEach(i -> {
-            if (bottomLampsInRedExists && (i ==2 || i ==5 ||i==8)){
+            boolean doWeHaveQuarterHalfOrPast = i == 2 || i == 5 || i == 8;
+
+            if (bottomLampsInRedExists && doWeHaveQuarterHalfOrPast){
                 output.append("R");
             }else {
                 output.append("Y");
             }
 
         });
+
         IntStream.range(topLampsInRed, 11).forEach(i -> output.append("O"));
         return output.toString();
     }
